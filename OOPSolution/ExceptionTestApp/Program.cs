@@ -24,7 +24,7 @@ namespace ExceptionTestApp
                 }
                 
             }
-
+            
             Console.WriteLine("다른 로직 수행");
             //...
             int[] list = { 107, 108, 109 };
@@ -59,11 +59,16 @@ namespace ExceptionTestApp
                 Console.WriteLine($"예외발생 : {ex.Message}");
                 Console.WriteLine($"입력 다시 부탁드립니다.");
             }
-
+            
             catch (Exception ex)
             {
                 Console.WriteLine($"예외발생 : {ex.Message}");
             }
+            finally
+            {
+                Console.WriteLine("Finally 언제든지 실행됨");
+            }
+
             Console.WriteLine("프로그램 종료!");//
         }
     }
