@@ -10,7 +10,9 @@ namespace IndexerTestApp
     class MyList : IEnumerable, IEnumerator
     {
         private int[] array;
+        private int position = -1; //배열의 현재 위치값
 
+        //배열화(배열이 아닌 mylist를 배열처럼 만들어주는 프러퍼티)
         public int this[int index] // == Mylist[i] = array[i]
         {
             get
@@ -32,27 +34,31 @@ namespace IndexerTestApp
         {
             get { return array.Length; } //3
         }
-
-        public object Current => throw new NotImplementedException();
+        //IEnumerator
+        public object Current
+        {
+            get { return array[position]; } //현재값 foreach에만 필요
+        }
 
         public MyList()
         {
-            array = new int[3];
+            array = new int[3];//0,1,2
         }
-
+        //IEnumerable method
         public IEnumerator GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this;
         }
-
+        //IEnumerator
         public bool MoveNext()
         {
-            throw new NotImplementedException();
+            position++;
+            return (position < array.Length);
         }
-
+        //IEnumerator
         public void Reset()
         {
-            throw new NotImplementedException();
+            position = -1; //초기화
         }
     }
 }
